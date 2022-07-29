@@ -9,7 +9,7 @@ services:
     - ./website:/usr/local/apache2/htdocs
 
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    image: erisamoe/cloudflared
     container_name: testSite_CloudFlare
     restart: always
     command: "tunnel --no-autoupdate run --token eyJhIjoiNzMzZGYwOTQ4MWMwMDdhOTY4OGNiNjBkMjQyYTA1ZGIiLCJ0IjoiNTc5NjEyMjktNDExMy00ZDk5LThkZTAtOGYxOWNjZTM0YTBmIiwicyI6IllqQm1ORFkxTnpJdE5tSmpOUzAwWkdJNExXRmlNalV0TlRNeE9UZGhaR00wWVRCbCJ9"
