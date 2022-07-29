@@ -1,0 +1,20 @@
+version: '3'
+services:
+  apache:
+    image: httpd:latest
+    container_name: my-apache-app
+    #ports:
+    #- '8080:80'
+    volumes:
+    - ./website:/usr/local/apache2/htdocs
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: testSite_CloudFlare
+    restart: always
+    command: "tunnel --no-autoupdate run --token eyJhIjoiNzMzZGYwOTQ4MWMwMDdhOTY4OGNiNjBkMjQyYTA1ZGIiLCJ0IjoiNTc5NjEyMjktNDExMy00ZDk5LThkZTAtOGYxOWNjZTM0YTBmIiwicyI6IllqQm1ORFkxTnpJdE5tSmpOUzAwWkdJNExXRmlNalV0TlRNeE9UZGhaR00wWVRCbCJ9"
+    # the token is created with ZeroTrust > Tunnels
+    volumes:
+      - ./cloudflared:/etc/cloudflared
+    depends_on:
+      - apache
